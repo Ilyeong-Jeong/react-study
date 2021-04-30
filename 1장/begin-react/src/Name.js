@@ -1,12 +1,13 @@
 import React from 'react';
 
-function Name({name, color}) {
+function Name({name, color, visible}) {
   return (
     <div 
       className="name"
       style={{ color }}
     >
-      {name}
+      { name }
+      { visible && <p>***</p> }
     </div>
   );
 }

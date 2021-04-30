@@ -1,6 +1,7 @@
 import Hello from './Hello';
 import Name from './Name';
 import Wrapper from './Wrapper';
+import Count from './Count';
 
 function App() {
   const react = 'React';
@@ -25,8 +26,10 @@ function App() {
       }
       <Wrapper>
         <Name name="testing" color="red" />
-        <Name />
+        <Name visible />
       </Wrapper>
+
+      <Count />
     </>
   );
 }
