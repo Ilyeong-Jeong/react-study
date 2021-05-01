@@ -17,6 +17,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "babel": {
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -34,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-hot-loader": "^4.5.3"
   }
 }

@@ -1,35 +1,88 @@
-import Hello from './Hello';
-import Name from './Name';
-import Wrapper from './Wrapper';
-import Count from './Count';
+import React, { useRef, useState } from 'react';
+
+import UserList from './UserList';
+import CreateUser from './CreateUser';
 
 function App() {
-  const react = 'React';
-  const style = {
-    backgroundColor: 'black',
-    color: 'aqua',
-    fontSize: 24,
-    padding: 8,
+  const [inputs, setInputs] = useState({
+    username: '',
+    email: ''    
+  });
+
+  const { username, email } = inputs;
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  }
+
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com',
+      active: true
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com',
+      active: false
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com',
+      active: false
+    }
+  ]);
+
+  const nextID = useRef(4);
+
+  const onCreate = () => {
+    const user = {
+      id: nextID.current,
+      username,
+      email
+    };
+
+    setUsers([...users, user]);
+
+    setInputs({
+      username: '',
+      email: ''
+    });
+
+    nextID.current += 1;
   };
+
+  const onRemove = (id) => {
+    setUsers(users.filter(v => v.id !== id));
+  }
+
+  const onToggle = (id) => {
+    setUsers(users.map((user) => {
+      return user.id === id ? { ...user, active: !user.active } : user
+    }))
+  }
 
   return (
     <>
-      <Hello 
-        // 주석주석주석
+      <CreateUser
+        username={ username }
+        email={ email }
+        onChange={ onChange }
+        onCreate={ onCreate }
       />
-      <div style={style}>안녕하세요. {react}</div>
-      {
-      /**
-       * 주석주석주석
-       * 주석주주주주석이다
-       */
-      }
-      <Wrapper>
-        <Name name="testing" color="red" />
-        <Name visible />
-      </Wrapper>
 
-      <Count />
+      <UserList 
+        users={ users } 
+        onRemove={ onRemove } 
+        onToggle={ onToggle }
+      />
     </>
   );
 }
