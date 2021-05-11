@@ -76,7 +76,7 @@ function App() {
     email: ''
   });
   const [state, dispatch] = useReducer(reducer, initialState);
-  const nextId = useRef(4);
+  // const nextId = useRef(4);
 
   const { users } = state;
 
@@ -92,21 +92,21 @@ function App() {
   //   []
   // )
 
-  const onCreate = useCallback(
-    () => {
-      dispatch({ 
-        type: 'CREATE_USER',
-        user: {
-          id: nextId.current,
-          username,
-          email,
-        },
-      })
+  // const onCreate = useCallback(
+  //   () => {
+  //     dispatch({ 
+  //       type: 'CREATE_USER',
+  //       user: {
+  //         id: nextId.current,
+  //         username,
+  //         email,
+  //       },
+  //     })
 
-      nextId.current += 1;
-    },
-    [username, email]
-  );
+  //     nextId.current += 1;
+  //   },
+  //   [username, email]
+  // );
 
   // const onToggle = useCallback(
   //   (id) => {
@@ -132,12 +132,13 @@ function App() {
 
   return (
     <UserDispatch.Provider value={ dispatch }>
-      <CreateUser
+      {/* <CreateUser
         username={username}
         email={email}
         onChange={onChange}
         onCreate={onCreate}
-      />
+      /> */}
+      <CreateUser />
       <UserList users={users} />
       <div>활성사용자 수 : {count}</div>
     </UserDispatch.Provider>
