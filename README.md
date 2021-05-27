@@ -1,5 +1,5 @@
 # react-study
-**React 기본 개념 보는 repo**
+**React 기본 개념 공부 및 관련 라이브러리 테스트하는 Repository**
 
 ---
 
